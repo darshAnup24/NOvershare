@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <title>Image Analysis and File Encryption</title>
+    <style>
+        body {
+            background-image: url('/static/images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', path='/js/main.js') }}" type="module"></script>
+
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-3xl font-bold mb-8 text-center text-blue-500">Image Analysis and File Encryption</h1>
+        
+        <!-- Tab Navigation -->
+        <nav class="mb-8">
+            <ul class="flex flex-wrap gap-4 justify-center" role="tablist">
+                <li>
+                    <button class="tab-button px-6 py-2 rounded-lg bg-blue-500 text-white"
+                            data-tab="analysis" role="tab" aria-selected="true">
+                        Image Analysis
+                    </button>
+                </li>
+                <li>
+                    <button class="tab-button px-6 py-2 rounded-lg bg-gray-300"
+                            data-tab="encryption" role="tab">
+                        File Encryption
+                    </button>
+                </li>
+                <li>
+                    <button class="tab-button px-6 py-2 rounded-lg bg-gray-300"
+                            data-tab="decryption" role="tab">
+                        File Decryption
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Tab Panels -->
+        <div class="tab-panels">
+            <!-- Image Analysis Panel -->
+            <section id="analysis-panel" class="tab-panel" role="tabpanel">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Image Analysis</h2>
+                    <form id="analysis-form" class="space-y-4">
+                        <div class="flex flex-col space-y-2">
+                            <label for="image-file" class="text-gray-700">Select Image</label>
+                            <input type="file" id="image-file" name="file" accept="image/*" required
+                                   class="file:border-0 file:text-white file:font-semibold
+                                   file:bg-blue-500 hover:file:bg-blue-600 hover:file:text-white file:px-6 file:py-2
+                                          file:rounded-full file:mr-4">
+                        </div>
+                        <button type="submit" 
+                                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition">
+                            Analyze Image
+                        </button>
+                    </form>
+                    <div id="analysis-result" class="mt-6"></div>
+                </div>
+            </section>
+
+            <!-- Encryption Panel -->
+            <section id="encryption-panel" class="tab-panel hidden" role="tabpanel">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Encrypt File</h2>
+                    <form id="encryption-form" class="space-y-4">
+                        <div class="flex flex-col space-y-2">
+                            <label for="encrypt-file" class="text-gray-700">Select File</label>
+                            <input type="file" id="encrypt-file" name="file" required
+                            class="file:border-0 file:text-white file:font-semibold
+                            file:bg-red-500 hover:file:bg-red-600 hover:file:text-white file:px-6 file:py-2
+                            file:rounded-full file:mr-4">
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="encrypt-password" class="text-gray-700">Password</label>
+                            <input type="password" id="encrypt-password" name="password" required
+                                   class="border rounded p-2" placeholder="Enter Password">
+                        </div>
+                        <button type="submit" 
+                                class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition">
+                            Encrypt File
+                        </button>
+                    </form>
+                    <div id="encryption-result" class="mt-4"></div>
+                </div>
+            </section>
+
+            <!-- Decryption Panel -->
+            <section id="decryption-panel" class="tab-panel hidden" role="tabpanel">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Decrypt File</h2>
+                    <form id="decryption-form" class="space-y-4">
+                        <div class="flex flex-col space-y-2">
+                            <label for="decrypt-file" class="text-gray-700">Select Encrypted File</label>
+                            <input type="file" id="decrypt-file" name="file" required
+                            class="file:border-0 file:text-white file:font-semibold
+                            file:bg-green-500 hover:file:bg-green-600 hover:file:text-white file:px-6 file:py-2
+                            file:rounded-full file:mr-4">
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="decrypt-password" class="text-gray-700">Password</label>
+                            <input type="password" id="decrypt-password" name="password" required
+                                   class="border rounded p-2" placeholder="Enter Password">
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="decrypt-salt" class="text-gray-700">Salt</label>
+                            <input type="text" id="decrypt-salt" name="salt" required
+                                   class="border rounded p-2" placeholder="Enter Salt">
+                        </div>
+                        <button type="submit" 
+                                class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition">
+                            Decrypt File
+                        </button>
+                    </form>
+                    <div id="decryption-result" class="mt-4"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
