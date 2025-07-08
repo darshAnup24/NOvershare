@@ -41,6 +41,11 @@ source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
 ```
 
+You can adjust versions if you know your project uses different ones.
+If you want to generate this file from your current environment, use:
+```bash
+pip freeze > requirements.txt
+```
 4. Enable Groq Acceleration
    
     Create a .env file in the root directory:
